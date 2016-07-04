@@ -1,0 +1,108 @@
+﻿<div>
+    <form name="userDetailsForm" ng-submit="submitForm()">
+
+        <div class="row">
+            <!-- first name -->
+            <div class="form-group col-md-6" ng-class="{ 'has-error' : userDetailsForm.firstName.$invalid && !userDetailsForm.firstName.$pristine }">
+                <label>First Name*</label>
+                <input type="text" name="firstName" class="form-control" ng-model="user.firstName" required>
+                <p ng-show="userDetailsForm.firstName.$invalid && !userDetailsForm.firstName.$pristine" class="help-block">First name is required.</p>
+            </div>
+
+            <!-- last name -->
+            <div class="form-group col-md-6" ng-class="{ 'has-error' : userDetailsForm.lastName.$invalid && !userDetailsForm.lastName.$pristine}">
+                <label>Last Name*</label>
+                <input type="text" name="lastName" class="form-control" ng-model="user.lastName" required>
+                <p ng-show="userDetailsForm.lastName.$invalid && !userDetailsForm.lastName.$pristine" class="help-block">Last name is required.</p>
+            </div>
+        </div>
+
+        <!-- company name -->
+        <div class="form-group" ng-class="{ 'has-error' : userDetailsForm.companyName.$invalid && !userDetailsForm.companyName.$pristine}">
+            <label>Company Name*</label>
+            <input type="text" name="companyName" class="form-control" ng-model="user.companyName" required>
+            <p ng-show="userDetailsForm.companyName.$invalid && !userDetailsForm.companyName.$pristine" class="help-block">Company name is required.</p>
+        </div>
+
+        <!-- work email -->
+        <div class="form-group" ng-class="{ 'has-error' : userDetailsForm.workEmail.$invalid && !userDetailsForm.workEmail.$pristine}">
+            <label>Work Email*</label>
+            <input type="email" name="workEmail" class="form-control" ng-model="user.workEmail" required>
+            <p ng-show="userDetailsForm.workEmail.$invalid && !userDetailsForm.workEmail.$pristine" class="help-block">Enter a valid email</p>
+        </div>
+
+        <!-- phone number -->
+        <div class="form-group" ng-class="{ 'has-error' : userDetailsForm.phoneNumber.$invalid && !userDetailsForm.phoneNumber.$pristine}">
+            <label>Phone Number*</label>
+            <input type="text" name="phoneNumber" class="form-control" ng-model="user.phoneNumber" required>
+            <p ng-show="userDetailsForm.phoneNumber.$invalid && !userDetailsForm.phoneNumber.$pristine" class="help-block">Enter a valid phone number</p>
+        </div>
+
+        <div class="row">
+            <!-- country -->
+            <div class="form-group col-md-6">
+                <label>Countries*</label>
+                <select class="form-control" ng-model="user.selectedCountry" ng-change="updateStates()" required>
+                    <option value="" disabled>- Please Select -</option>
+                    <option ng-repeat="country in countries" >{{country}}</option>
+                </select>
+            </div>
+
+            <!-- state -->
+            <div class="form-group col-md-6">
+                <label>State*</label>
+                <select class="form-control" ng-model="user.selectedState" ng-change="stateSelected()" ng-required="isStateSelectionRequired()">
+                    <option value="" disabled>- Please Select (US Only) -</option>
+                    <option ng-repeat="state in states">{{state}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- industry -->
+            <div class="form-group col-md-6">
+                <label>Industry*</label>
+                <select class="form-control" ng-model="user.selectedIndustry" required>
+                    <option value="" disabled>- Please Select -</option>
+                    <option ng-repeat="industry in industries" >
+                        {{industry}}
+                    </option>
+                </select>
+            </div>
+
+            <!-- zipcode -->
+            <div class="form-group col-md-6" ng-class="{ 'has-error' : userDetailsForm.zipcode.$invalid && !userDetailsForm.zipcode.$pristine}">
+                <label>Zip/Postal*</label>
+                <input type="text" name="zipcode" class="form-control" ng-model="user.zipcode" required>
+                <p ng-show="userDetailsForm.zipcode.$invalid && !userDetailsForm.zipcode.$pristine" class="help-block">Enter a valid phone number</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- password -->
+            <div class="form-group col-md-6">
+                <label>Password*</label>
+                <input type="password" pw-validate name="password" class="form-control" ng-model="user.password" 
+                       required>
+                <p ng-show="userDetailsForm.password.$error.pwValidate" class="help-block">Password does not criteria (1 uppercase, 1 lowercase, 1 special character and at least 8 characters)</p>
+            </div>
+
+            <!-- verify password -->
+            <div class="form-group col-md-6">
+                <label>Confirm Password*</label>
+                <input type="password" name="confirmPassword" ng-model="user.confirmPassword" 
+                       pw-check="user.password" class="form-control" required>
+                <p ng-show="userDetailsForm.confirmPassword.$error.pwCheck" 
+                   class="help-block">Password do not match</p>
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <label><input type="checkbox" ng-model="user.interestedInBecomingPartner">INTERESTED IN BECOMING A PARTNER</label>
+            </br>
+            <label>By clicking register, you agree to Anomali's terms of use and privacy policy</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-disabled="userDetailsForm.$invalid">Register</button>
+    </form>
+</div>

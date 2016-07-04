@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+    <link href="app.css" rel="stylesheet" />
+    <link href="styles/bootstrap.css" rel="stylesheet" />
+
+    <script src="../scripts/angular.js"></script>
+
+    <script src="app/validationModule.js"></script>
+    <script src="services/dataService.js"></script>
+
+    <script src="app/directives/userDetailsDirective/pwValidateDirective.js"></script>
+    <script src="app/directives/userDetailsDirective/pwCheckDirective.js"></script>
+
+    <script src="app/directives/userDetailsDirective/userDetailsController.js"></script>
+    <script src="app/directives/userDetailsDirective/userDetailsDirective.js"></script>
+</head>
+<body ng-app="validationModule">
+    <div>
+        <div class="container">
+            <div class="row">
+                <user-details />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
